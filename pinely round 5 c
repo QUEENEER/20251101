@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define int long long
+signed main(){
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	int t;
+	cin>>t;
+	while(t--){
+		int n,x;
+		cin>>n>>x;
+		vector<int>a(n);
+		vector<int>b(n);
+		for(int i=0;i<n;i++){
+			cin>>a[i];
+		}
+		sort(a.begin(),a.end());
+		int l=1;
+		int r=n-1;
+		int h=a[0];
+		int ans=0;
+		b[0]=a[0];
+		if(a[0]>=x){
+			ans+=a[0];
+		}
+		int q=1;
+		while(l<=r){
+			if((h+a[r])/x>h/x){
+				ans+=a[r];
+				h=h+a[r];
+				b[q]=a[r];
+				q++;
+				r--;
+			}
+			else{
+				h=h+a[l];
+				b[q]=a[l];
+				q++;
+				l++;
+			}
+		}
+		cout<<ans<<'\n';
+		for(int i=0;i<n;i++){
+			cout<<b[i]<<' ';
+		}
+		cout<<'\n';
+	}
+}
